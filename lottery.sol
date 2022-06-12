@@ -11,10 +11,9 @@ contract lottery{
         // deployerAddress ;
     
 
-    address payable[] public addressOfBuyer;
+    address payable[]  addressOfBuyer;
 
         
-
 
     receive() external payable{
         
@@ -24,6 +23,11 @@ contract lottery{
 
 }
 
+function totalUser() public view returns(uint){
+            return addressOfBuyer.length;
+        }
+
+
 function totalBalance() public  view returns(uint){
 
     return address(this).balance;
@@ -31,7 +35,7 @@ function totalBalance() public  view returns(uint){
 }
 
 
-function findWinner( ) public {
+function findWinner( ) public returns(bool){
 
 
 require( msg.sender == deployerAddress , "you are not owner"); //718623
@@ -49,7 +53,7 @@ require( msg.sender == deployerAddress , "you are not owner"); //718623
          winner = addressOfBuyer[randomNumber];
          winner.transfer(totalBalance());
       
-
+        return true;
           
 
 
@@ -81,6 +85,7 @@ function changeOwner(address _newOwner) public returns(address){
 function removeAllUser() public {
 
     require(msg.sender == deployerAddress , "SORRY you are not owner");
+    require(findWinner()==true , "owner , please run the find winner ");
 
     while(addressOfBuyer.length > 0) {
     addressOfBuyer.pop();
