@@ -2,7 +2,7 @@
 lottery code in solidity written by diwakar
 
 this contract is written by me .
-In this contract only vser can generate random number and find winner 
+In this contract only user can generate random number and find winner 
 in this smart contract , we build some extra features :-
       1. this contract is reuseable due to removeAllUser() function . Due to this function ,
          after find winner you can restart the contract with zero users
